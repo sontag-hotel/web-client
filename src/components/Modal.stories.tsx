@@ -7,11 +7,7 @@ export default {
 } as ComponentMeta<typeof Modal>;
 
 const Template: ComponentStory<typeof Modal> = ({...args}) => {
-  return (
-    <>
-      <Modal {...args}></Modal>
-    </>
-  );
+  return <Modal {...args}></Modal>;
 };
 export const OpenedModal = Template.bind({});
 

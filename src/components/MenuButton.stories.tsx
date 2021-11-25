@@ -21,7 +21,7 @@ export default {
 } as ComponentMeta<typeof MenuButton>;
 
 const Template: ComponentStory<typeof MenuButton> = ({...args}) => {
-  return <MenuButton {...args}></MenuButton>;
+  return <MenuButton {...args} />;
 };
 export const CafeCollection = Template.bind({});
 export const Home = Template.bind({});

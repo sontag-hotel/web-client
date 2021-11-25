@@ -31,10 +31,12 @@ const Container = styled.button`
   font-size: 1.6rem;
   width: fit-content;
   padding: 0;
-  svg {
-    width: 2.4rem;
-    height: 2.4rem;
+  > :first-child {
     margin-bottom: 0.5rem;
+  }
+  svg {
+    width: 2.7rem;
+    height: 2.7rem;
     line {
       stroke: currentColor;
     }

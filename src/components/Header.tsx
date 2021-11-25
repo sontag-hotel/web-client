@@ -5,6 +5,7 @@ import MenuButton, {MenuButtonProps} from './MenuButton';
 import {colors} from 'styles';
 type HeaderProps = {menus: MenuButtonProps[]};
 const Header: FC<HeaderProps> = ({menus}) => {
+  console.log(menus);
   return (
     <Container>
       <InputPlaceholder text="어떤 카페를 찾으세요?" width={24.6} />

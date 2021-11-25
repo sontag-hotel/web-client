@@ -2,7 +2,7 @@ import {FC, MouseEventHandler, ReactNode} from 'react';
 import styled from 'styled-components';
 import {colors} from 'styles';
 
-type MenuButtonProps = {
+export type MenuButtonProps = {
   Icon: ReactNode;
   text: string;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
@@ -19,6 +19,7 @@ const MenuButton: FC<MenuButtonProps> = ({Icon, text, onClick}) => {
 export default MenuButton;
 
 const Container = styled.button`
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +34,12 @@ const Container = styled.button`
   svg {
     width: 2.4rem;
     height: 2.4rem;
-    fill: ${colors.primary};
     margin-bottom: 0.5rem;
+    line {
+      stroke: currentColor;
+    }
+    path {
+      fill: currentColor;
+    }
   }
 `;

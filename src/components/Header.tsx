@@ -1,17 +1,17 @@
 import {FC} from 'react';
 import styled from 'styled-components';
-import {CupIcon, UserIcon} from 'icons';
 import InputPlaceholder from './InputPlaceholder';
-import MenuButton from './MenuButton';
+import MenuButton, {MenuButtonProps} from './MenuButton';
 import {colors} from 'styles';
-type HeaderProps = {};
-const Header: FC<HeaderProps> = ({}) => {
+type HeaderProps = {menus: MenuButtonProps[]};
+const Header: FC<HeaderProps> = ({menus}) => {
   return (
     <Container>
       <InputPlaceholder text="어떤 카페를 찾으세요?" width={24.6} />
       <Grid>
-        <MenuButton Icon={<CupIcon />} text={'카페컬렉션'} />
-        <MenuButton Icon={<UserIcon />} text={'My'} />
+        {menus.map(menu => (
+          <MenuButton {...menu} />
+        ))}
       </Grid>
     </Container>
   );

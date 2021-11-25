@@ -1,8 +1,8 @@
 import {ComponentStory, ComponentMeta} from '@storybook/react';
 import MenuButton from './MenuButton';
-import {CupIcon, HomeIcon, SearchIcon, UserIcon} from 'icons';
+import * as Icons from 'icons';
 import {ReactNode} from 'react';
-const Icons = {CupIcon, HomeIcon, SearchIcon, UserIcon};
+
 export default {
   title: 'Sontag/MenuButton',
   component: MenuButton,
@@ -17,12 +17,11 @@ export default {
         type: 'select',
       },
     },
-    // onClick: {action: 'clicked'},
   },
 } as ComponentMeta<typeof MenuButton>;
 
-const Template: ComponentStory<typeof MenuButton> = ({Icon, ...args}) => {
-  return <MenuButton {...args} Icon={Icon}></MenuButton>;
+const Template: ComponentStory<typeof MenuButton> = ({...args}) => {
+  return <MenuButton {...args}></MenuButton>;
 };
 export const CafeCollection = Template.bind({});
 export const Home = Template.bind({});
@@ -30,18 +29,18 @@ export const Search = Template.bind({});
 export const My = Template.bind({});
 
 CafeCollection.args = {
+  Icon: <Icons.CupIcon />,
   text: '카페컬렉션',
-  Icon: <CupIcon />,
 };
 Home.args = {
+  Icon: <Icons.HomeIcon />,
   text: '홈',
-  Icon: <HomeIcon />,
 };
 Search.args = {
-  Icon: <SearchIcon />,
+  Icon: <Icons.SearchIcon />,
   text: '탐색',
 };
 My.args = {
+  Icon: <Icons.UserIcon />,
   text: 'My',
-  Icon: <UserIcon />,
 };

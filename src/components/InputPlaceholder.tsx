@@ -36,9 +36,15 @@ const Container = styled.div<{width: number; fullWidth: boolean}>`
   font-size: 1.6rem;
   background: ${colors.backgroundGray};
   svg {
+    color: ${colors.accent};
     width: 2.4rem;
     height: 2.4rem;
-    fill: ${colors.accent};
     margin-right: 1rem;
+    line {
+      stroke: currentColor;
+    }
+    path {
+      fill: currentColor;
+    }
   }
 `;

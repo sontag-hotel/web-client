@@ -1,6 +1,7 @@
 {
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
+    "baseUrl": "src",
     "rootDir": ".",
     "outDir": "build",
     "noUnusedLocals": true,
@@ -18,9 +19,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "baseUrl": "src"
+    "jsx": "react-jsx"
   },
-  "include": ["src", "test/**/*.ts"],
-  "exclude": ["node_modules/**/*"]
+  "include": ["src", "test/**/*.ts"]
 }

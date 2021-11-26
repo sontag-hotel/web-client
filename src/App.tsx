@@ -1,12 +1,11 @@
-//import React from 'react';
-// import logo from './logo.svg';
-import './App.css';
-import Map from './components/Map';
+import Pages from './pages';
+import {GlobalStyle} from './styles';
 
 function App() {
   return (
     <div>
-      <Map />
+      <GlobalStyle />
+      <Pages />
     </div>
   );
 }

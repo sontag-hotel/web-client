@@ -1,11 +1,15 @@
+import {ApolloProvider} from '@apollo/client';
+import {client} from 'Apollo';
 import Pages from './pages';
 import {GlobalStyle} from './styles';
 
 function App() {
   return (
     <div>
-      <GlobalStyle />
-      <Pages />
+      <ApolloProvider client={client}>
+        <GlobalStyle />
+        <Pages />
+      </ApolloProvider>
     </div>
   );
 }

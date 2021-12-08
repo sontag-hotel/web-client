@@ -49,17 +49,18 @@ const Container = styled.span<ContainerProps>`
       border: 2px solid ${lineColor};
       border-radius: 50%;
     `}
-    div {
+  div {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     border: 2px solid ${colors.background};
-    border-radius: 50%;
     overflow: hidden;
     img {
       max-width: fit-content;
       height: 100%;
+      //width: ${props => sizes[props.size]};
+      border-radius: 50%;
     }
   }
 `;

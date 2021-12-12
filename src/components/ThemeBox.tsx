@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 import {colors} from '../styles';
 import Theme from './Theme';
-import Theme_1 from 'assets/images/hot-beverage.png';
-import Theme_2 from 'assets/images/camera.png';
-import Theme_3 from 'assets/images/laptop.png';
 
 const SThemeBox = styled.div`
   display: flex;
@@ -16,15 +13,15 @@ const SThemeBox = styled.div`
 function ThemeBox() {
   const themes = [
     {
-      icon: Theme_1,
+      icon: '\u2615',
       text: '커피 맛집',
     },
     {
-      icon: Theme_2,
+      icon: '\u{1F4F7}',
       text: '분위기 감성',
     },
     {
-      icon: Theme_3,
+      icon: '\u{1F4BB}',
       text: '노트북 작업',
     },
   ];

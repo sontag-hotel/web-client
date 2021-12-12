@@ -2,7 +2,7 @@
 // import React from 'react';
 import {useEffect} from 'react';
 import styled from 'styled-components';
-import markerImg from 'assets/images/marker1.png';
+import markerImg from 'assets/images/marker.png';
 import {selectedThemeVar} from 'Apollo';
 import {useReactiveVar} from '@apollo/client';
 

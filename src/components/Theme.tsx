@@ -14,18 +14,19 @@ const STheme = styled.button`
   font-weight: 600;
   background-color: transparent;
   border: none;
-`;
-
-const ThemeImg = styled.img`
-  height: 4rem;
-  margin-bottom: 5px;
+  > span:first-child {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+  }
 `;
 
 export default function Theme({Icon, text}: ITheme) {
   return (
     <STheme>
-      <ThemeImg src={Icon} />
+      <span>{Icon}</span>
       <span>{text}</span>
     </STheme>
   );
 }
+//emoji 렌더하기
+//gps 사용해서 내위치 조회

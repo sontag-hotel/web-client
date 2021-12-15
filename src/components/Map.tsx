@@ -1,9 +1,8 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
-// import React from 'react';
 import {useEffect} from 'react';
 import styled from 'styled-components';
 import markerImg from 'assets/images/marker.png';
-import {selectedThemeVar} from 'Apollo';
+import {selectedThemeVar, kakaoMapVar} from 'stores/cafe';
 import {useReactiveVar} from '@apollo/client';
 
 declare global {
@@ -14,23 +13,32 @@ declare global {
 
 const SMap = styled.div`
   z-index: 1;
+  width: 100vw;
+  height: 100vh;
 `;
 
 function Map(): React.ReactElement {
   const selectedTheme = useReactiveVar(selectedThemeVar);
-
+  const map = useReactiveVar(kakaoMapVar);
+  //지도 생성
+  const createMap = () => {
+    const container = document.getElementById('kakao-map');
+    const options = {
+      center: new window.kakao.maps.LatLng(
+        37.546541849098304,
+        127.0416230371248
+      ),
+      level: 3,
+    };
+    const createdMap = new window.kakao.maps.Map(container, options);
+    kakaoMapVar(createdMap);
+  };
+  useEffect(() => {
+    createMap();
+  }, []);
   //지도에 선택된 테마 마커 표시
   useEffect(() => {
     const showMarkers = () => {
-      const container = document.getElementById('kakao-map');
-      const options = {
-        center: new window.kakao.maps.LatLng(
-          37.546541849098304,
-          127.0416230371248
-        ),
-        level: 3,
-      };
-      const map = new window.kakao.maps.Map(container, options);
       const bounds = new window.kakao.maps.LatLngBounds();
       for (let i = 0; i < selectedTheme.length; i++) {
         const markerImage = new window.kakao.maps.MarkerImage(
@@ -52,8 +60,11 @@ function Map(): React.ReactElement {
         map.setBounds(bounds);
       }
     };
-    showMarkers();
-  }, [selectedTheme]);
+    if (map) {
+      showMarkers();
+    }
+  }, [selectedTheme, map]);
+
   return (
     <SMap>
       <div id="kakao-map" style={{width: '100vw', height: '100vh'}}></div>;

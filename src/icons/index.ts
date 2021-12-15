@@ -3,5 +3,6 @@ import {ReactComponent as SearchIcon} from 'assets/icons/search.svg';
 import {ReactComponent as HomeIcon} from 'assets/icons/home.svg';
 import {ReactComponent as UserIcon} from 'assets/icons/user.svg';
 import {ReactComponent as CloseIcon} from 'assets/icons/close.svg';
+import {ReactComponent as Gps} from 'assets/icons/gps.svg';
 
-export {CupIcon, SearchIcon, HomeIcon, UserIcon, CloseIcon};
+export {CupIcon, SearchIcon, HomeIcon, UserIcon, CloseIcon, Gps};

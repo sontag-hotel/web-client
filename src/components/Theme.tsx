@@ -10,14 +10,16 @@ const STheme = styled.button`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 10rem;
   font-size: 1.3rem;
   font-weight: 600;
   background-color: transparent;
   border: none;
   > span:first-child {
-    font-size: 3.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 4rem;
+    margin-bottom: 1.3rem;
   }
+  cursor: pointer;
 `;
 
 export default function Theme({Icon, text}: ITheme) {
@@ -28,5 +30,3 @@ export default function Theme({Icon, text}: ITheme) {
     </STheme>
   );
 }
-//emoji 렌더하기
-//gps 사용해서 내위치 조회

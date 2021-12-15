@@ -5,7 +5,7 @@ import Theme from './Theme';
 const SThemeBox = styled.div`
   display: flex;
   background-color: ${colors.backgroundGray};
-  height: 7rem;
+  height: 10rem;
   width: 100%;
   z-index: 2;
 `;

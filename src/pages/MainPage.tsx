@@ -2,7 +2,14 @@ import ThemeBox from '../components/ThemeBox';
 import Map from '../components/Map';
 import MyLocation from 'components/MyLocation';
 import styled from 'styled-components';
-
+import InformCardBox from 'components/InformCardBox';
+import {cafeListVar, clickedThemeVar} from 'stores/cafe';
+import {useReactiveVar} from '@apollo/client';
+import CardLayout from 'components/CardLayout';
+import CafeName from 'components/CafeName';
+import Address from 'components/Address';
+import Line from 'components/Line';
+import BaseBox from 'components/BaseBox';
 const SContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -10,10 +17,33 @@ const SContainer = styled.div`
   align-items: center;
 `;
 export default function MainPage() {
+  const cafeList = useReactiveVar(cafeListVar);
+  const clickedTheme = useReactiveVar(clickedThemeVar);
   return (
     <SContainer>
       <ThemeBox />
       <MyLocation />
+      <InformCardBox>
+        {clickedTheme.length &&
+          cafeList.length &&
+          cafeList.map(cafe => (
+            <CardLayout key={cafe.name}>
+              <CafeName name={cafe.name} />
+              <Address address={cafe.address} />
+              <Line />
+              <BaseBox
+                userList={
+                  cafe.theme.filter(e => e.themeName === clickedTheme)[0]
+                    .userList
+                }
+                userCount={
+                  cafe.theme.filter(e => e.themeName === clickedTheme)[0]
+                    .userCount
+                }
+              />
+            </CardLayout>
+          ))}
+      </InformCardBox>
       <Map></Map>
     </SContainer>
   );

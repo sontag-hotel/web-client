@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 import {colors} from 'styles';
-import {kakaoMapVar} from 'stores/cafe';
+import {isClickedThemeVar, kakaoMapVar} from 'stores/cafe';
 import {Gps} from 'icons';
+import {useReactiveVar} from '@apollo/client';
+
+type TProps = {
+  top: string;
+  left: string;
+};
 
 const SMyLocation = styled.button`
   z-index: 2;
@@ -19,13 +25,15 @@ const SMyLocation = styled.button`
   border: none;
   cursor: pointer;
   position: absolute;
-  top: 92%;
+  top: ${(props: TProps) => props.top};
+  left: ${(props: TProps) => props.left};
   > svg {
     margin-right: 0.8rem;
   }
 `;
 
 export default function MyLocation() {
+  const isClickedTheme = useReactiveVar(isClickedThemeVar);
   const focusMyLocation = () => {
     const kakaoMap = kakaoMapVar();
     if (navigator.geolocation && kakaoMap) {
@@ -40,7 +48,11 @@ export default function MyLocation() {
     }
   };
   return (
-    <SMyLocation onClick={focusMyLocation}>
+    <SMyLocation
+      onClick={focusMyLocation}
+      top={isClickedTheme ? '15%' : '92%'}
+      left={isClickedTheme ? '66%' : ''}
+    >
       <Gps />
       <span>내주변 둘러보기</span>
     </SMyLocation>

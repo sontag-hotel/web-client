@@ -2,7 +2,7 @@
 import {useEffect} from 'react';
 import styled from 'styled-components';
 import markerImg from 'assets/images/marker.png';
-import {selectedThemeVar, kakaoMapVar} from 'stores/cafe';
+import {cafeListVar, kakaoMapVar} from 'stores/cafe';
 import {useReactiveVar} from '@apollo/client';
 
 declare global {
@@ -12,13 +12,13 @@ declare global {
 }
 
 const SMap = styled.div`
-  z-index: 1;
+  /* z-index: 1; */
   width: 100vw;
   height: 100vh;
 `;
 
 function Map(): React.ReactElement {
-  const selectedTheme = useReactiveVar(selectedThemeVar);
+  const cafeList = useReactiveVar(cafeListVar);
   const map = useReactiveVar(kakaoMapVar);
   //지도 생성
   const createMap = () => {
@@ -40,19 +40,19 @@ function Map(): React.ReactElement {
   useEffect(() => {
     const showMarkers = () => {
       const bounds = new window.kakao.maps.LatLngBounds();
-      for (let i = 0; i < selectedTheme.length; i++) {
+      for (let i = 0; i < cafeList.length; i++) {
         const markerImage = new window.kakao.maps.MarkerImage(
           markerImg,
           new window.kakao.maps.Size(24, 35)
         );
         const points = new window.kakao.maps.LatLng(
-          selectedTheme[i].location.longitude,
-          selectedTheme[i].location.latitude
+          cafeList[i].location.longitude,
+          cafeList[i].location.latitude
         );
         const marker = new window.kakao.maps.Marker({
           map: map,
           position: points,
-          title: selectedTheme[i].title,
+          title: cafeList[i].name,
           image: markerImage,
         });
         marker.setMap(map);
@@ -63,7 +63,7 @@ function Map(): React.ReactElement {
     if (map) {
       showMarkers();
     }
-  }, [selectedTheme, map]);
+  }, [cafeList, map]);
 
   return (
     <SMap>

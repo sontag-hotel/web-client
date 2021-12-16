@@ -25,10 +25,11 @@ function ThemeBox() {
       text: '노트북 작업',
     },
   ];
+
   return (
     <SThemeBox>
       {themes.map(theme => (
-        <Theme Icon={theme.icon} text={theme.text} />
+        <Theme Icon={theme.icon} text={theme.text} key={theme.icon} />
       ))}
     </SThemeBox>
   );

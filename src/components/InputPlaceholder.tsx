@@ -19,7 +19,6 @@ const InputPlaceholder: FC<InputPlaceholderProps> = ({
     </Container>
   );
 };
-
 export default InputPlaceholder;
 
 const Container = styled.div<{width: number; fullWidth: boolean}>`
@@ -35,6 +34,7 @@ const Container = styled.div<{width: number; fullWidth: boolean}>`
   font-weight: 500;
   font-size: 1.6rem;
   background: ${colors.backgroundGray};
+  cursor: auto;
   svg {
     color: ${colors.accent};
     width: 2.4rem;

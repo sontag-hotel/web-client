@@ -10,6 +10,8 @@ import CafeName from 'components/CafeName';
 import Address from 'components/Address';
 import Line from 'components/Line';
 import BaseBox from 'components/BaseBox';
+import RegisterButton from 'components/RegisterButton';
+import InputPlaceholder from 'components/InputPlaceholder';
 const SContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,6 +25,7 @@ export default function MainPage() {
     <SContainer>
       <ThemeBox />
       <MyLocation />
+      {/* <InputPlaceholder text="등록하고 싶은 카페를 검색해보세요!" width={34} /> */}
       <InformCardBox>
         {clickedTheme.length &&
           cafeList.length &&

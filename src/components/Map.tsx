@@ -2,8 +2,9 @@
 // import React from 'react';
 import {useEffect, useRef} from 'react';
 import styled from 'styled-components';
+import 'styled-components/macro';
 
-declare const kakao: any;
+declare const window: any;
 
 const SMap = styled.div`
   z-index: 1;
@@ -13,10 +14,10 @@ function Map(): React.ReactElement {
   const container = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const options = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667),
+      center: new window.kakao.maps.LatLng(33.450701, 126.570667),
       level: 3,
     };
-    new kakao.maps.Map(container.current, options);
+    new window.kakao.maps.Map(container.current, options);
   }, []);
   return (
     <SMap>

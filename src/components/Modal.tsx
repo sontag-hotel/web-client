@@ -2,10 +2,12 @@ import {CloseIcon} from 'icons';
 import {FC, useEffect, useRef} from 'react';
 import {createPortal} from 'react-dom';
 import styled from 'styled-components';
+import 'styled-components/macro';
+
 import {colors} from 'styles';
 const modalRoot = document.getElementById('modal');
 type ModalProps = {
-  onClose?: () => void;
+  onClose: () => void;
 };
 const Modal: FC<ModalProps> = ({onClose, children}) => {
   const el = useRef(document.createElement('div'));
@@ -46,5 +48,8 @@ const Container = styled.div`
     path {
       fill: currentColor;
     }
+  }
+  > div {
+    margin-top: 4.2rem;
   }
 `;

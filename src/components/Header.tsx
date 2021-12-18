@@ -1,17 +1,20 @@
 import {FC} from 'react';
 import styled from 'styled-components';
-import InputPlaceholder from './InputPlaceholder';
+import 'styled-components/macro';
 import MenuButton, {MenuButtonProps} from './MenuButton';
 import {colors} from 'styles';
+import {LogoIcon} from 'icons';
 type HeaderProps = {menus: MenuButtonProps[]};
 const Header: FC<HeaderProps> = ({menus}) => {
-  console.log(menus);
   return (
     <Container>
-      <InputPlaceholder text="어떤 카페를 찾으세요?" width={24.6} />
+      <Title>
+        <LogoIcon />
+        손탁
+      </Title>
       <Grid>
-        {menus.map(menu => (
-          <MenuButton {...menu} />
+        {menus.map((menu, i) => (
+          <MenuButton key={i} {...menu} />
         ))}
       </Grid>
     </Container>
@@ -28,6 +31,13 @@ const Container = styled.header`
   padding-left: 1.2rem;
   padding-right: 2.4rem;
   border-bottom: 1px solid ${colors.border};
+`;
+const Title = styled.h1`
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: ${colors.primary};
 `;
 const Grid = styled.span`
   display: grid;

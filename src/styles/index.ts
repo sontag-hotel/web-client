@@ -1,4 +1,6 @@
 import {createGlobalStyle} from 'styled-components';
+import 'styled-components/macro';
+
 import 'modern-normalize/modern-normalize.css';
 // import woff2 from '../public/fonts/open-sans-v16-latin-regular.woff2';
 // import woff from '../public/fonts/open-sans-v16-latin-regular.woff';
@@ -54,12 +56,14 @@ export const GlobalStyle = styled.createGlobalStyle`
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      z-index: 3;
     }
   }
   #root {
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    height: 100%;
   }
   * {
     box-sizing: border-box;

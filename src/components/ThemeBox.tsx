@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import 'styled-components/macro';
+
 import {colors} from '../styles';
 import Theme from './Theme';
 import Theme_1 from 'assets/images/hot-beverage.png';
@@ -31,7 +33,7 @@ function ThemeBox() {
   return (
     <SThemeBox>
       {themes.map(theme => (
-        <Theme Icon={theme.icon} text={theme.text} />
+        <Theme key={theme.text} Icon={theme.icon} text={theme.text} />
       ))}
     </SThemeBox>
   );

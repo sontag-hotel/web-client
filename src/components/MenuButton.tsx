@@ -1,5 +1,7 @@
 import {FC, MouseEventHandler, ReactNode} from 'react';
 import styled from 'styled-components';
+import 'styled-components/macro';
+
 import {colors} from 'styles';
 
 export type MenuButtonProps = {

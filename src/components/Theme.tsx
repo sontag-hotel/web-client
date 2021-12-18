@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import 'styled-components/macro';
 
 type ITheme = {
   Icon: string;

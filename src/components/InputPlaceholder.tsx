@@ -1,5 +1,7 @@
 import {FC} from 'react';
 import styled from 'styled-components';
+import 'styled-components/macro';
+
 import {SearchIcon} from 'icons';
 import {colors} from 'styles';
 type InputPlaceholderProps = {

@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import {useReactiveVar} from '@apollo/client';
-import {isClickedThemeVar} from 'stores/cafe';
+import {cafeListVar, isClickedThemeVar} from 'stores/cafe';
+import {gql, useQuery} from '@apollo/client';
+import {useEffect} from 'react';
+
 type Iprops = {
   visible: string;
 };
@@ -17,9 +20,29 @@ const SInformCardBox = styled.div`
   bottom: 1%;
   overflow: auto;
 `;
+const GET_CAFES = gql`
+  query GetCafes($theme: String!) {
+    getCafe(theme: $theme) {
+      _id
+      name
+      address
+      workTime
+      contact
+      location
+      theme
+    }
+  }
+`;
 
 export default function InformCardBox({children}: {children: React.ReactNode}) {
   const isClickedTheme = useReactiveVar(isClickedThemeVar);
+  const {data} = useQuery(GET_CAFES);
+  useEffect(() => {
+    if (data) {
+      cafeListVar(data);
+    }
+  }, [data]);
+
   return (
     <SInformCardBox visible={isClickedTheme ? 'flex' : 'none'}>
       {children}

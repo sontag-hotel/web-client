@@ -10,6 +10,7 @@ import CafeName from 'components/CafeName';
 import Address from 'components/Address';
 import Line from 'components/Line';
 import BaseBox from 'components/BaseBox';
+import ThemeTitle from 'components/ThemeTitle';
 // import SearchInput from 'components/SearchInput';
 // import InputPlaceholder from 'components/InputPlaceholder';
 const SContainer = styled.div`
@@ -23,6 +24,7 @@ export default function MainPage() {
   const clickedTheme = useReactiveVar(clickedThemeVar);
   return (
     <SContainer>
+      <ThemeTitle text={'커피 맛집'} Icon={'\u2615'} />
       <ThemeBox />
       <MyLocation />
       {/* <InputPlaceholder text="등록하고 싶은 카페를 검색해보세요!" width={34} /> */}

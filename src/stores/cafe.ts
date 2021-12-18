@@ -2,6 +2,7 @@ import {makeVar} from '@apollo/client';
 
 export const isClickedThemeVar = makeVar(false);
 export const clickedThemeVar = makeVar('');
+export const isClickedRegisterVar = makeVar(false);
 //더미데이터
 export const cafeListVar = makeVar([
   {

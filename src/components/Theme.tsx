@@ -1,6 +1,6 @@
-// import gql from 'graphql-tag';
+import {isClickedThemeVar} from 'stores/cafe';
 import styled from 'styled-components';
-import {clickedThemeVar, isClickedThemeVar} from 'stores/cafe';
+// import {clickedThemeVar, isClickedThemeVar} from 'stores/cafe';
 
 type ITheme = {
   Icon: string;
@@ -26,28 +26,16 @@ const STheme = styled.button`
     outline: 0;
   }
 `;
-// const GET_SELECTED = gql`
-//   query getSelected($theme: String!) {
-//     cafe(theme: $theme) {
-//       _id
-//       name
-//       address
-//       workTime
-//       contact
-//       location
-//       theme
-//     }
-//   }
-// `;
 
 export default function Theme({Icon, text}: ITheme) {
-  const handleClickTheme = (text: string) => {
-    isClickedThemeVar(true);
-    clickedThemeVar(text);
-    console.log(clickedThemeVar());
-  };
+  // const handleClickTheme = (text: string) => {
+  //   isClickedThemeVar(true);
+  //   clickedThemeVar(text);
+  //   console.log(clickedThemeVar());
+  // };
+  // onClick={() => handleClickTheme(text)}
   return (
-    <STheme onClick={() => handleClickTheme(text)}>
+    <STheme onClick={() => console.log(isClickedThemeVar())}>
       <span>{Icon}</span>
       <span>{text}</span>
     </STheme>

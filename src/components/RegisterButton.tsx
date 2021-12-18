@@ -8,7 +8,9 @@ const SRegisterButton = styled.button`
   font-size: 1.4rem;
   color: ${colors.accent};
   font-weight: 500;
-  padding: 0.5rem 1rem;
+  width: 8.7rem;
+  height: 3rem;
+  text-align: center;
 `;
 
 export default function RegisterButton() {

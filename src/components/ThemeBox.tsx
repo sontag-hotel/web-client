@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 import {colors} from '../styles';
 import Theme from './Theme';
+import {useQuery} from '@apollo/client';
+import {GET_ISCLICKEDTHEME} from 'stores/query';
 
+type TProps = {
+  visible?: string;
+};
 const SThemeBox = styled.div`
-  display: flex;
+  display: ${(props: TProps) => props.visible};
   background-color: ${colors.backgroundGray};
   height: 10rem;
   width: 100%;
@@ -25,9 +30,9 @@ function ThemeBox() {
       text: '노트북 작업',
     },
   ];
-
+  const {data} = useQuery(GET_ISCLICKEDTHEME);
   return (
-    <SThemeBox>
+    <SThemeBox visible={data?.isClickedTheme ? 'none' : 'flex'}>
       {themes.map(theme => (
         <Theme Icon={theme.icon} text={theme.text} key={theme.icon} />
       ))}

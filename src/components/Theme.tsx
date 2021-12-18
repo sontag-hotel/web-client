@@ -22,6 +22,9 @@ const STheme = styled.button`
     margin-bottom: 1.3rem;
   }
   cursor: pointer;
+  &:focus {
+    outline: 0;
+  }
 `;
 // const GET_SELECTED = gql`
 //   query getSelected($theme: String!) {

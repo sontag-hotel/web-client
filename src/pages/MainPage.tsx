@@ -80,7 +80,7 @@ export default function MainPage() {
       desc={me.introductionDesc}
       name={me.name}
     />,
-    location.state?.afterEdit
+    (location.state as {afterEdit: boolean})?.afterEdit
   );
   const menus = useMemo(
     () => [

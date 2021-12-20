@@ -13,7 +13,7 @@ export const searchInputVar = makeVar('');
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const markersVar = makeVar<any>([]);
 export const cafeListVar = makeVar<
-  CafeQuery['getCafe'] | GetAllCafeQuery['getAllCafe']
+  Partial<CafeQuery['getCafe']> | Partial<GetAllCafeQuery['getAllCafe']>
 >([]);
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const kakaoMapVar = makeVar<any>(null);

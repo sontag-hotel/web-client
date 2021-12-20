@@ -1,7 +1,6 @@
 import {Theme as ThemeType} from 'generated/graphql';
 import {clickedThemeVar, isClickedThemeVar} from 'stores/cafe';
 import styled from 'styled-components';
-// import {clickedThemeVar, isClickedThemeVar} from 'stores/cafe';
 import 'styled-components/macro';
 
 type ITheme = {

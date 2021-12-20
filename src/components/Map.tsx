@@ -1,6 +1,7 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import {useEffect} from 'react';
 import styled from 'styled-components';
+import 'styled-components/macro';
 import markerImg from 'assets/images/marker.png';
 import {
   cafeListVar,

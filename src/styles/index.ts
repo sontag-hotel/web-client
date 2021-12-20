@@ -2,16 +2,6 @@ import {createGlobalStyle} from 'styled-components';
 import 'styled-components/macro';
 
 import 'modern-normalize/modern-normalize.css';
-// import woff2 from '../public/fonts/open-sans-v16-latin-regular.woff2';
-// import woff from '../public/fonts/open-sans-v16-latin-regular.woff';
-// @font-face {
-//   font-family: 'Open Sans';
-//   font-style: normal;
-//   font-weight: 400;
-//   font-display: fallback;
-//   src: local('Open Sans Regular'), local('OpenSans-Regular'),
-//     url('${woff2}') format('woff2'), url('${woff}') format('woff');
-// }
 const breakpoints = [480, 768, 992, 1200];
 export const mq = breakpoints.map(bp => `@media (min-width: ${bp}px)`);
 export const colors = {
@@ -63,7 +53,7 @@ export const GlobalStyle = styled.createGlobalStyle`
     display: flex;
     flex-direction: column;
     min-height: 100%;
-    height: 100%;
+    /* height: 100%; */
   }
   * {
     box-sizing: border-box;

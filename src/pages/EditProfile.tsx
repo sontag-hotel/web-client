@@ -1,24 +1,29 @@
-import {login} from 'App';
+import {meVar, tokenVar, update} from 'App';
 import Profile from 'components/ProfileInput';
 import ProfileLayout from 'components/ProfileLayout';
-import {useSignupMutation} from 'generated/graphql';
-import {ChangeEventHandler, FC, useEffect, useState} from 'react';
-import {Navigate, useLocation, useNavigate} from 'react-router-dom';
+import {useUpdateProfileMutation} from 'generated/graphql';
+import {ChangeEventHandler, useEffect, useState} from 'react';
+import {Navigate, useNavigate} from 'react-router-dom';
 
-const Signup: FC = () => {
-  const location = useLocation();
+const EditProfile = () => {
+  const token = tokenVar();
+  const me = meVar();
   const navigate = useNavigate();
 
   const [state, setState] = useState({
-    name: '',
-    desc: '',
+    name: me.name,
+    desc: me.introductionDesc,
   });
   const {name, desc} = state;
 
-  const [mutation, {data}] = useSignupMutation({
+  const [mutation, {data}] = useUpdateProfileMutation({
     variables: {
       input: {name, introductionDesc: desc},
-      accessToken: location.state,
+    },
+    context: {
+      headers: {
+        authorization: token,
+      },
     },
   });
 
@@ -32,16 +37,15 @@ const Signup: FC = () => {
 
   useEffect(() => {
     if (data) {
-      login(data.signup.token, data.signup.me);
+      update({
+        name: data.updateProfile.name,
+        introductionDesc: data.updateProfile.introductionDesc,
+      });
+      navigate('/', {state: {afterEdit: true}});
     }
-  }, [data]);
+  }, [data, navigate]);
 
-  if (!location.state) return <Navigate to={'/'} />;
-
-  if (data)
-    return (
-      <Navigate to="/welcome" state={{token: data.signup.token}} replace />
-    );
+  if (!token) return <Navigate to={'/'} replace />;
   return (
     <ProfileLayout
       buttonText="확인"
@@ -55,5 +59,4 @@ const Signup: FC = () => {
     </ProfileLayout>
   );
 };
-
-export default Signup;
+export default EditProfile;

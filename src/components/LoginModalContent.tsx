@@ -4,10 +4,11 @@ import 'styled-components/macro';
 import {LogoBigIcon} from 'icons';
 import {colors} from 'styles';
 import KakaoButton from './KakaoButton';
+import Policy from './Policy';
 
-type LoginModalProps = {onClick: MouseEventHandler<HTMLButtonElement>};
+type LoginModalContentProps = {onLogin: MouseEventHandler<HTMLButtonElement>};
 
-const LoginModal: FC<LoginModalProps> = ({onClick}) => {
+const LoginModalContent: FC<LoginModalContentProps> = ({onLogin}) => {
   return (
     <Container>
       <LogoBigIcon />
@@ -18,19 +19,19 @@ const LoginModal: FC<LoginModalProps> = ({onClick}) => {
         <br />
         저장할 수 있어요
       </Info>
-      <KakaoButton onClick={onClick} />
-      <Policy>개인정보 처리방침</Policy>
+      <KakaoButton onClick={onLogin} />
+      <Policy />
     </Container>
   );
 };
-export default LoginModal;
+export default LoginModalContent;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 3rem;
 `;
 const Info = styled.p`
   margin: 0;
@@ -41,9 +42,4 @@ const Info = styled.p`
   > span {
     color: ${colors.accent};
   }
-`;
-const Policy = styled.div`
-  font-weight: normal;
-  font-size: 1.3rem;
-  color: ${colors.textSecondary};
 `;

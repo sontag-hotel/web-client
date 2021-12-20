@@ -1,6 +1,10 @@
 mutation LoginKakao($code: String!, $redirectUri: String!) {
   loginKakao(code: $code, redirectURI: $redirectUri) {
     token
+    me {
+      name
+      introductionDesc
+    }
   }
 }
 mutation Signup($input: NewAccountInput!, $accessToken: String!) {
@@ -8,11 +12,19 @@ mutation Signup($input: NewAccountInput!, $accessToken: String!) {
     token
     me {
       name
+      introductionDesc
     }
   }
 }
 query Me {
   me {
     name
+    introductionDesc
+  }
+}
+mutation UpdateProfile($input: UpdateProfileInput!) {
+  updateProfile(input: $input) {
+    name
+    introductionDesc
   }
 }

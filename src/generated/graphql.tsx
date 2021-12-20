@@ -33,6 +33,9 @@ export type Credential = {
 export type Me = {
   __typename?: 'Me';
   _id: Scalars['String'];
+  /** 소개 */
+  introductionDesc: Scalars['String'];
+  /** 이름 */
   name: Scalars['String'];
 };
 
@@ -40,6 +43,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   loginKakao: Credential;
   signup: Credential;
+  updateProfile: Me;
 };
 
 export type MutationLoginKakaoArgs = {
@@ -50,6 +54,10 @@ export type MutationLoginKakaoArgs = {
 export type MutationSignupArgs = {
   accessToken: Scalars['String'];
   input: NewAccountInput;
+};
+
+export type MutationUpdateProfileArgs = {
+  input: UpdateProfileInput;
 };
 
 export type NewAccountInput = {
@@ -65,6 +73,13 @@ export type Query = {
   me: Me;
 };
 
+export type UpdateProfileInput = {
+  /** 수정할 소개 */
+  introductionDesc?: InputMaybe<Scalars['String']>;
+  /** 수정할 이름 */
+  name?: InputMaybe<Scalars['String']>;
+};
+
 export type LoginKakaoMutationVariables = Exact<{
   code: Scalars['String'];
   redirectUri: Scalars['String'];
@@ -72,7 +87,11 @@ export type LoginKakaoMutationVariables = Exact<{
 
 export type LoginKakaoMutation = {
   __typename?: 'Mutation';
-  loginKakao: {__typename?: 'Credential'; token: string};
+  loginKakao: {
+    __typename?: 'Credential';
+    token: string;
+    me: {__typename?: 'Me'; name: string; introductionDesc: string};
+  };
 };
 
 export type SignupMutationVariables = Exact<{
@@ -85,7 +104,7 @@ export type SignupMutation = {
   signup: {
     __typename?: 'Credential';
     token: string;
-    me: {__typename?: 'Me'; name: string};
+    me: {__typename?: 'Me'; name: string; introductionDesc: string};
   };
 };
 
@@ -93,13 +112,26 @@ export type MeQueryVariables = Exact<{[key: string]: never}>;
 
 export type MeQuery = {
   __typename?: 'Query';
-  me: {__typename?: 'Me'; name: string};
+  me: {__typename?: 'Me'; name: string; introductionDesc: string};
+};
+
+export type UpdateProfileMutationVariables = Exact<{
+  input: UpdateProfileInput;
+}>;
+
+export type UpdateProfileMutation = {
+  __typename?: 'Mutation';
+  updateProfile: {__typename?: 'Me'; name: string; introductionDesc: string};
 };
 
 export const LoginKakaoDocument = gql`
   mutation LoginKakao($code: String!, $redirectUri: String!) {
     loginKakao(code: $code, redirectURI: $redirectUri) {
       token
+      me {
+        name
+        introductionDesc
+      }
     }
   }
 `;
@@ -153,6 +185,7 @@ export const SignupDocument = gql`
       token
       me {
         name
+        introductionDesc
       }
     }
   }
@@ -202,6 +235,7 @@ export const MeDocument = gql`
   query Me {
     me {
       name
+      introductionDesc
     }
   }
 `;
@@ -236,3 +270,54 @@ export function useMeLazyQuery(
 export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = Apollo.QueryResult<MeQuery, MeQueryVariables>;
+export const UpdateProfileDocument = gql`
+  mutation UpdateProfile($input: UpdateProfileInput!) {
+    updateProfile(input: $input) {
+      name
+      introductionDesc
+    }
+  }
+`;
+export type UpdateProfileMutationFn = Apollo.MutationFunction<
+  UpdateProfileMutation,
+  UpdateProfileMutationVariables
+>;
+
+/**
+ * __useUpdateProfileMutation__
+ *
+ * To run a mutation, you first call `useUpdateProfileMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateProfileMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateProfileMutation, { data, loading, error }] = useUpdateProfileMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useUpdateProfileMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateProfileMutation,
+    UpdateProfileMutationVariables
+  >
+) {
+  const options = {...defaultOptions, ...baseOptions};
+  return Apollo.useMutation<
+    UpdateProfileMutation,
+    UpdateProfileMutationVariables
+  >(UpdateProfileDocument, options);
+}
+export type UpdateProfileMutationHookResult = ReturnType<
+  typeof useUpdateProfileMutation
+>;
+export type UpdateProfileMutationResult =
+  Apollo.MutationResult<UpdateProfileMutation>;
+export type UpdateProfileMutationOptions = Apollo.BaseMutationOptions<
+  UpdateProfileMutation,
+  UpdateProfileMutationVariables
+>;

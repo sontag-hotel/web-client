@@ -26,7 +26,9 @@ const Modal: FC<ModalProps> = ({onClose, children}) => {
     el.current
   );
 };
+
 export default Modal;
+
 const Container = styled.div`
   position: relative;
   background: ${colors.background};
@@ -50,6 +52,6 @@ const Container = styled.div`
     }
   }
   > div {
-    margin-top: 4.2rem;
+    margin-top: 2.1rem;
   }
 `;

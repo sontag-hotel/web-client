@@ -1,19 +1,33 @@
 import {FC} from 'react';
 import styled from 'styled-components';
+import 'styled-components/macro';
+
 import {SearchIcon} from 'icons';
 import {colors} from 'styles';
+import {useReactiveVar} from '@apollo/client';
+import {isOpenSearchBarVar} from 'stores/cafe';
 type InputPlaceholderProps = {
-  text: string;
-  width: number;
+  text?: string;
+  width?: number;
   fullWidth?: boolean;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  visible?: string;
 };
+
 const InputPlaceholder: FC<InputPlaceholderProps> = ({
   text,
   width,
   fullWidth,
+  onClick,
 }) => {
+  const isOpenSearchBar = useReactiveVar(isOpenSearchBarVar);
   return (
-    <Container width={width} fullWidth={!!fullWidth}>
+    <Container
+      width={width}
+      fullWidth={!!fullWidth}
+      onClick={onClick}
+      visible={isOpenSearchBar ? 'flex' : 'none'}
+    >
       <SearchIcon />
       <span>{text}</span>
     </Container>
@@ -21,12 +35,13 @@ const InputPlaceholder: FC<InputPlaceholderProps> = ({
 };
 export default InputPlaceholder;
 
-const Container = styled.div<{width: number; fullWidth: boolean}>`
-  display: flex;
+const Container = styled.div`
+  display: ${(props: InputPlaceholderProps) => props.visible};
   align-items: center;
   justify-self: center;
   color: ${colors.textSecondary};
-  width: ${({width, fullWidth}) => (fullWidth ? '100%' : `${width}rem`)};
+  width: ${(props: InputPlaceholderProps) =>
+    props.fullWidth ? '100%' : `${props.width}rem`};
   height: 4.6rem;
   border: 1px solid ${colors.accent};
   padding-left: 1.5rem;
@@ -35,6 +50,9 @@ const Container = styled.div<{width: number; fullWidth: boolean}>`
   font-size: 1.6rem;
   background: ${colors.backgroundGray};
   cursor: auto;
+  position: absolute;
+  z-index: 5;
+  top: 10%;
   svg {
     color: ${colors.accent};
     width: 2.4rem;

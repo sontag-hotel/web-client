@@ -1,5 +1,4 @@
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import {GET_ISCLIECKEDREGISTER} from 'stores/query';
 import ThemeTitle from './ThemeTitle';
 
 export default {
@@ -10,22 +9,22 @@ export default {
 const Template: ComponentStory<typeof ThemeTitle> = args => (
   <ThemeTitle {...args} />
 );
-Template.parameters = {
-  apolloClient: {
-    mocks: [
-      {
-        request: {
-          query: GET_ISCLIECKEDREGISTER,
-        },
-        result: {
-          data: {
-            isClickedRegister: true,
-          },
-        },
-      },
-    ],
-  },
-};
+// Template.parameters = {
+//   apolloClient: {
+//     mocks: [
+//       {
+//         request: {
+//           query: GET_ISCLIECKEDREGISTER,
+//         },
+//         result: {
+//           data: {
+//             isClickedRegister: true,
+//           },
+//         },
+//       },
+//     ],
+//   },
+// };
 export const Coffee = Template.bind({});
 export const Camera = Template.bind({});
 export const Laptop = Template.bind({});

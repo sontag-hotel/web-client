@@ -1,8 +1,13 @@
+import {useReactiveVar} from '@apollo/client';
+import {isOpenSearchInputVar, isSearchedVar, searchInputVar} from 'stores/cafe';
 import styled from 'styled-components';
 import {colors} from 'styles';
 
+type TProps = {
+  visible: string;
+};
 const SSearchInput = styled.div`
-  display: flex;
+  display: ${(props: TProps) => props.visible};
   align-items: center;
   justify-content: space-around;
   width: 33.5rem;
@@ -11,6 +16,9 @@ const SSearchInput = styled.div`
   border-radius: 1rem;
   background: ${colors.backgroundGray};
   padding: 0.3rem 0.2rem;
+  position: absolute;
+  z-index: 5;
+  top: 10%;
   > input:first-child {
     width: 27rem;
     height: 3rem;
@@ -33,10 +41,15 @@ const SButton = styled.div`
 `;
 
 export default function SearchInput() {
+  const isOpenSearchInput = useReactiveVar(isOpenSearchInputVar);
+  const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    searchInputVar(e.target?.value);
+    console.log(searchInputVar());
+  };
   return (
-    <SSearchInput>
-      <input type="text"></input>
-      <SButton>검색</SButton>
+    <SSearchInput visible={isOpenSearchInput ? 'flex' : 'none'}>
+      <input type="text" onChange={handleSearchInput} autoFocus></input>
+      <SButton onClick={() => isSearchedVar(true)}>검색</SButton>
     </SSearchInput>
   );
 }

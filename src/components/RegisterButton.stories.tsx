@@ -6,7 +6,7 @@ export default {
   title: 'Sontag/RegisterButton',
 } as ComponentMeta<typeof RegisterButton>;
 
-const Template: ComponentStory<typeof RegisterButton> = () => (
-  <RegisterButton />
+const Template: ComponentStory<typeof RegisterButton> = args => (
+  <RegisterButton {...args} />
 );
 export const Primary = Template.bind({});

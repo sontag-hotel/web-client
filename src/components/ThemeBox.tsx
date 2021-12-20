@@ -1,11 +1,16 @@
+import {useReactiveVar} from '@apollo/client';
+import {isClickedThemeVar} from 'stores/cafe';
 import styled from 'styled-components';
+import 'styled-components/macro';
 import {colors} from '../styles';
-import Theme from './Theme';
-import {useQuery} from '@apollo/client';
-import {GET_ISCLICKEDTHEME} from 'stores/query';
+import Theme, {themeType} from './Theme';
 
 type TProps = {
   visible?: string;
+};
+type Themes = {
+  icon: string;
+  text: keyof typeof themeType;
 };
 const SThemeBox = styled.div`
   display: ${(props: TProps) => props.visible};
@@ -16,7 +21,7 @@ const SThemeBox = styled.div`
 `;
 
 function ThemeBox() {
-  const themes = [
+  const themes: Themes[] = [
     {
       icon: '\u2615',
       text: '커피 맛집',
@@ -30,11 +35,11 @@ function ThemeBox() {
       text: '노트북 작업',
     },
   ];
-  const {data} = useQuery(GET_ISCLICKEDTHEME);
+  const isClickedTheme = useReactiveVar(isClickedThemeVar);
   return (
-    <SThemeBox visible={data?.isClickedTheme ? 'none' : 'flex'}>
+    <SThemeBox visible={isClickedTheme ? 'none' : 'flex'}>
       {themes.map(theme => (
-        <Theme Icon={theme.icon} text={theme.text} key={theme.icon} />
+        <Theme key={theme.text} Icon={theme.icon} text={theme.text} />
       ))}
     </SThemeBox>
   );

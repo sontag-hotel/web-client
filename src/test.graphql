@@ -1,0 +1,61 @@
+# mutation LoginKakao($code: String!, $redirectUri: String!) {
+#   loginKakao(code: $code, redirectURI: $redirectUri) {
+#     token
+#   }
+# }
+# mutation Signup($input: NewAccountInput!, $accessToken: String!) {
+#   signup(input: $input, accessToken: $accessToken) {
+#     token
+#     me {
+#       name
+#     }
+#   }
+# }
+# query Me {
+#   me {
+#     name
+#   }
+# }
+# query GetCafes($theme: String!) {
+#   getCafe(theme: $theme) {
+#     _id
+#     name
+#     address
+#     workTime
+#     contact
+#     location
+#     theme
+#   }
+# }
+
+query GetAllCafe {
+  getAllCafe {
+    _id
+    name
+    info {
+      address
+    }
+    contact
+    location {
+      x
+      y
+    }
+    theme
+  }
+}
+
+query Cafe($theme: Theme!) {
+  Cafe(theme: $theme) {
+    _id
+    name
+    info {
+      address
+    }
+    contact
+    location {
+      x
+      y
+    }
+    theme
+  }
+}

@@ -1,5 +1,6 @@
 import {FC} from 'react';
 import styled, {css} from 'styled-components';
+import 'styled-components/macro';
 import {colors} from 'styles';
 const sizes = {
   small: css`
@@ -11,8 +12,8 @@ const sizes = {
     height: 2.7rem;
   `,
   large: css`
-    width: 2.7rem;
-    height: 2.7rem;
+    width: 10.2rem;
+    height: 10.2rem;
   `,
 };
 
@@ -42,6 +43,7 @@ type ContainerProps = {
   lineColor?: string;
 };
 const Container = styled.span<ContainerProps>`
+  display: inline-block;
   ${({size}) => sizes[size]}
   ${({lineColor}) =>
     lineColor &&

@@ -50,24 +50,30 @@ export default function MainPage() {
       theme: clickedThemeVar(),
     },
   });
+
   const cafeList = useReactiveVar(cafeListVar);
+
   useEffect(() => {
     const cafeList = isClickedTheme ? cafe?.getCafe : allCafe?.getAllCafe;
     cafeListVar(cafeList);
   }, [isClickedTheme, allCafe, cafe]);
+
   const handleClickBackground = () => {
     isOpenSearchInputVar(false);
     isOpenSearchBarVar(false);
     isOpenBackgroundVar(false);
     isClickedRegisterVar(false);
   };
+
   const navigate = useNavigate();
   const location = useLocation();
   const token = useReactiveVar(tokenVar);
   const me = meVar();
+
   const [handleLoginModal, LoginModal] = useModal(
     <LoginModalContent onLogin={loginKakao} />
   );
+
   const [handleProfileMoal, ProfileModal] = useModal(
     <ProfileModalContent
       onEdit={() => {
@@ -82,6 +88,7 @@ export default function MainPage() {
     />,
     (location.state as {afterEdit: boolean})?.afterEdit
   );
+
   const menus = useMemo(
     () => [
       {
@@ -96,6 +103,7 @@ export default function MainPage() {
     ],
     [handleLoginModal, handleProfileMoal, token]
   );
+
   return (
     <SContainer>
       <Header menus={menus} />

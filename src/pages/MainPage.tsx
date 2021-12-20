@@ -32,6 +32,8 @@ import {useEffect} from 'react';
 import InputPlaceholder from 'components/InputPlaceholder';
 import SearchInput from 'components/SearchInput';
 import Background from 'components/Background';
+import {loginKakao, logout, meVar, tokenVar} from 'stores/auth';
+import {useModal} from 'hooks';
 
 const SContainer = styled.div`
   display: flex;

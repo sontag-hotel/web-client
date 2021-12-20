@@ -1,3 +1,6 @@
+import {makeVar} from '@apollo/client';
+import {LoginKakaoMutation} from 'generated/graphql';
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const Kakao: any;
 

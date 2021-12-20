@@ -18,7 +18,7 @@ const Signup: FC = () => {
   const [mutation, {data}] = useSignupMutation({
     variables: {
       input: {name, introductionDesc: desc},
-      accessToken: location.state,
+      accessToken: location.state as string,
     },
   });
 

@@ -5,6 +5,7 @@ import 'styled-components/macro';
 import markerImg from 'assets/images/marker.png';
 import {
   cafeListVar,
+  clickedThemeVar,
   isSearchedVar,
   kakaoMapVar,
   searchInputVar,
@@ -95,7 +96,21 @@ function Map(): React.ReactElement {
     const handleKakaoSearch = () => {
       const placesSearchCB = (data: any[], status: any, pagination: any) => {
         if (status === window.kakao.maps.services.Status.OK) {
-          // console.log('data : ', data);
+          console.log('data : ', data);
+          cafeListVar(
+            data.map(d => ({
+              _id: d.id,
+              name: d.place_name,
+              info: {address: d.road_address_name},
+              theme: [clickedThemeVar()],
+              contact: d.phone,
+              location: {
+                x: d.x,
+                y: d.y,
+              },
+            }))
+          );
+          isSearchedVar(false);
         }
       };
       const ps = new window.kakao.maps.services.Places();

@@ -80,7 +80,7 @@ export default function MainPage() {
       desc={me.introductionDesc}
       name={me.name}
     />,
-    location.state?.afterEdit
+    (location.state as {afterEdit: boolean})?.afterEdit
   );
   const menus = useMemo(
     () => [
@@ -115,7 +115,7 @@ export default function MainPage() {
       <MyLocation />
       <InformCardBox>
         {cafeList?.map(cafe => (
-          <CardLayout key={cafe.name}>
+          <CardLayout key={cafe._id}>
             <CafeName name={cafe.name} />
             <Address address={cafe.info.address} />
             <Line />

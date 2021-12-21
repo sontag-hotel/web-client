@@ -5,7 +5,6 @@ import ProfileCircle from 'components/ProfileCircle';
 import {useMemo} from 'react';
 import ProfileModalContent from 'components/ProfileModalContent';
 import {useLocation, useNavigate} from 'react-router-dom';
-
 import ThemeBox from '../components/ThemeBox';
 import Map from '../components/Map';
 import MyLocation from 'components/MyLocation';
@@ -115,6 +114,7 @@ export default function MainPage() {
     ],
     [handleLoginModal, handleProfileMoal, token]
   );
+
   return (
     <SContainer>
       <div>
@@ -143,15 +143,14 @@ export default function MainPage() {
             <Address address={cafe.info.address} />
             <Line />
             {/* <BaseBox
-                userList={
-                  cafe.theme.filter(e => e.themeName === clickedTheme)[0]
-                    .userList
-                }
-                userCount={
-                  cafe.theme.filter(e => e.themeName === clickedTheme)[0]
-                    .userCount
-                }
-              /> */}
+              userList={
+                cafe.theme.filter(e => e.themeName === clickedTheme)[0].userList
+              }
+              userCount={
+                cafe.theme.filter(e => e.themeName === clickedTheme)[0]
+                  .userCount
+              }
+            /> */}
           </CardLayout>
         ))}
       </InformCardBox>

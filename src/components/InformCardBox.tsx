@@ -11,7 +11,7 @@ const SInformCardBox = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 34rem;
+  max-height: 34rem;
   padding: 1.5rem;
   z-index: 2;
   position: fixed;

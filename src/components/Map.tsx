@@ -1,6 +1,6 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import {useEffect} from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import 'styled-components/macro';
 import markerImg from 'assets/images/marker.png';
 import {
@@ -22,11 +22,11 @@ declare global {
   }
 }
 
-const SMap = styled.div`
-  z-index: 1;
-  width: 100vw;
-  height: 100vh;
-`;
+// const SMap = styled.div`
+//   z-index: 1;
+//   width: 100vw;
+//   height: 100vh;
+// `;
 let markers: any[] = [];
 const markerImage = new window.kakao.maps.MarkerImage(
   markerImg,
@@ -125,9 +125,10 @@ function Map(): React.ReactElement {
     }
   }, [isSearched, searchKeyword]);
   return (
-    <SMap>
-      <div id="kakao-map" style={{width: '100vw', height: '100vh'}}></div>;
-    </SMap>
+    <div id="kakao-map" style={{width: '100vw', height: '100vh'}}></div>
+    // <SMap>
+
+    // </SMap>
   );
 }
 

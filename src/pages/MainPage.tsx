@@ -120,11 +120,11 @@ export default function MainPage() {
       <div>
         <Header menus={menus} />
         <ThemeBox />
+        <ThemeTitle
+          text={themeType[clickedTheme].text}
+          Icon={themeType[clickedTheme].icon}
+        />
       </div>
-      <ThemeTitle
-        text={themeType[clickedTheme].text}
-        Icon={themeType[clickedTheme].icon}
-      />
       <InputPlaceholder
         text="등록하고 싶은 카페를 검색해보세요!"
         width={33.5}

@@ -1,5 +1,6 @@
 import {useReactiveVar} from '@apollo/client';
-import {isOpenBackgroundVar} from 'stores/cafe';
+import {useEffect} from 'react';
+import {isClickedThemeVar, isOpenBackgroundVar} from 'stores/cafe';
 import styled from 'styled-components';
 
 type TProps = {
@@ -22,7 +23,12 @@ const SBackground = styled.div`
 
 export default function Background({onClick}: TBackgroundProps) {
   const isOpenBackground = useReactiveVar(isOpenBackgroundVar);
-
+  const isClickedTheme = useReactiveVar(isClickedThemeVar);
+  useEffect(() => {
+    if (!isClickedTheme) {
+      isOpenBackgroundVar(false);
+    }
+  }, [isClickedTheme]);
   return (
     <SBackground
       visible={isOpenBackground ? 'block' : 'none'}

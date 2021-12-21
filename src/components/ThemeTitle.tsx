@@ -52,17 +52,17 @@ export default function ThemeTitle({text, Icon}: TThemeTitle) {
       <STitle
         left={isClickedRegister ? '-40%' : '6.5%'}
       >{`${Icon} ${text}`}</STitle>
-      {isClickedRegister ? (
+      {/* {isClickedRegister ? (
         <></>
-      ) : (
-        <RegisterButton
-          onClick={() => {
-            isClickedRegisterVar(true);
-            isOpenSearchBarVar(true);
-            isOpenBackgroundVar(true);
-          }}
-        />
-      )}
+      ) : ( */}
+      <RegisterButton
+        onClick={() => {
+          isClickedRegisterVar(true);
+          isOpenSearchBarVar(true);
+          isOpenBackgroundVar(true);
+        }}
+      />
+      {/* )} */}
     </SThemeTitle>
   );
 }

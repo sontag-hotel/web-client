@@ -38,12 +38,31 @@ import {useModal} from 'hooks';
 const SContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  > div:first-child {
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+  }
 `;
 
+const themeType = {
+  TASTE: {
+    text: '커피 맛집',
+    icon: '\u2615',
+  },
+  MOOD: {
+    text: '분위기 감성',
+    icon: '\u{1F4F7}',
+  },
+  WORK: {
+    text: '노트북 작업',
+    icon: '\u{1F4BB}',
+  },
+};
 export default function MainPage() {
   const isClickedTheme = useReactiveVar(isClickedThemeVar);
+  const clickedTheme = useReactiveVar(clickedThemeVar);
   const {data: allCafe} = useGetAllCafeQuery();
   const {data: cafe} = useCafeQuery({
     variables: {
@@ -98,9 +117,14 @@ export default function MainPage() {
   );
   return (
     <SContainer>
-      <Header menus={menus} />
-
-      <ThemeTitle text={'커피 맛집'} Icon={'\u2615'} />
+      <div>
+        <Header menus={menus} />
+        <ThemeBox />
+      </div>
+      <ThemeTitle
+        text={themeType[clickedTheme].text}
+        Icon={themeType[clickedTheme].icon}
+      />
       <InputPlaceholder
         text="등록하고 싶은 카페를 검색해보세요!"
         width={33.5}
@@ -111,11 +135,10 @@ export default function MainPage() {
       />
       <SearchInput />
       <Background onClick={handleClickBackground} />
-      <ThemeBox />
       <MyLocation />
       <InformCardBox>
         {cafeList?.map(cafe => (
-          <CardLayout key={cafe.name}>
+          <CardLayout key={cafe._id}>
             <CafeName name={cafe.name} />
             <Address address={cafe.info.address} />
             <Line />

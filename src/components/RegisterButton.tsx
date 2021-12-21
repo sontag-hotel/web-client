@@ -1,6 +1,10 @@
 import {useReactiveVar} from '@apollo/client';
 import {useEffect} from 'react';
-import {isClickedRegisterVar, isClickedThemeVar} from 'stores/cafe';
+import {
+  isClickedRegisterVar,
+  isClickedThemeVar,
+  isOpenSearchInputVar,
+} from 'stores/cafe';
 import styled from 'styled-components';
 import {colors} from 'styles';
 
@@ -26,12 +30,13 @@ const SRegisterButton = styled.button`
 export default function RegisterButton({onClick}: TRegisterButton) {
   const isClickedRegister = useReactiveVar(isClickedRegisterVar);
   const isClickedTheme = useReactiveVar(isClickedThemeVar);
+  const isOpenSearchInput = useReactiveVar(isOpenSearchInputVar);
   useEffect(() => {
     if (!isClickedTheme) {
       isClickedRegisterVar(false);
     }
     return;
-  }, [isClickedTheme, isClickedRegister]);
+  }, [isClickedTheme, isClickedRegister, isOpenSearchInput]);
   return (
     <SRegisterButton
       visible={isClickedRegister ? 'none' : 'block'}

@@ -4,10 +4,14 @@ import 'styled-components/macro';
 import MenuButton, {MenuButtonProps} from './MenuButton';
 import {colors} from 'styles';
 import {LogoIcon} from 'icons';
+import {isClickedThemeVar} from 'stores/cafe';
+import {useReactiveVar} from '@apollo/client';
 type HeaderProps = {menus: MenuButtonProps[]};
+type TProps = {visible: string};
 const Header: FC<HeaderProps> = ({menus}) => {
+  const isClickedTheme = useReactiveVar(isClickedThemeVar);
   return (
-    <Container>
+    <Container visible={isClickedTheme ? 'none' : 'flex'}>
       <Title>
         <LogoIcon />
         손탁
@@ -25,12 +29,13 @@ export default Header;
 const Container = styled.header`
   width: 100%;
   height: 7.7rem;
-  display: flex;
+  display: ${(props: TProps) => props.visible};
   align-items: center;
   justify-content: space-between;
   padding-left: 1.2rem;
   padding-right: 2.4rem;
   border-bottom: 1px solid ${colors.border};
+  background-color: ${colors.background};
 `;
 const Title = styled.h1`
   display: flex;

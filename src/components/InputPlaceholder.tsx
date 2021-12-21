@@ -1,11 +1,11 @@
-import {FC} from 'react';
+import {FC, useEffect} from 'react';
 import styled from 'styled-components';
 import 'styled-components/macro';
 
 import {SearchIcon} from 'icons';
 import {colors} from 'styles';
 import {useReactiveVar} from '@apollo/client';
-import {isOpenSearchBarVar} from 'stores/cafe';
+import {isClickedThemeVar, isOpenSearchBarVar} from 'stores/cafe';
 type InputPlaceholderProps = {
   text?: string;
   width?: number;
@@ -21,6 +21,12 @@ const InputPlaceholder: FC<InputPlaceholderProps> = ({
   onClick,
 }) => {
   const isOpenSearchBar = useReactiveVar(isOpenSearchBarVar);
+  const isClickedTheme = useReactiveVar(isClickedThemeVar);
+  useEffect(() => {
+    if (!isClickedTheme) {
+      isOpenSearchBarVar(false);
+    }
+  }, [isClickedTheme]);
   return (
     <Container
       width={width}

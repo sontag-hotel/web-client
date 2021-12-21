@@ -18,6 +18,7 @@ const SThemeBox = styled.div`
   height: 10rem;
   width: 100%;
   z-index: 2;
+  box-shadow: 0rem 0.4rem 0.4rem 0.2rem rgba(179, 179, 179, 0.25);
 `;
 
 function ThemeBox() {

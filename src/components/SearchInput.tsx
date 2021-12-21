@@ -1,5 +1,12 @@
 import {useReactiveVar} from '@apollo/client';
-import {isOpenSearchInputVar, isSearchedVar, searchInputVar} from 'stores/cafe';
+import {useEffect, useRef} from 'react';
+import {
+  isClickedThemeVar,
+  isOpenSearchInputVar,
+  isSearchedVar,
+  searchInputVar,
+  searchKeywordVar,
+} from 'stores/cafe';
 import styled from 'styled-components';
 import {colors} from 'styles';
 
@@ -42,14 +49,43 @@ const SButton = styled.div`
 
 export default function SearchInput() {
   const isOpenSearchInput = useReactiveVar(isOpenSearchInputVar);
+  const isClickedTheme = useReactiveVar(isClickedThemeVar);
+  const searchInput = useReactiveVar(searchInputVar);
+  const searchRef = useRef<HTMLInputElement>(null);
   const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     searchInputVar(e.target?.value);
-    console.log(searchInputVar());
   };
+  useEffect(() => {
+    if (!isClickedTheme) {
+      isOpenSearchInputVar(false);
+    }
+  }, [isClickedTheme]);
+  useEffect(() => {
+    if (!isOpenSearchInput && searchRef.current?.value) {
+      searchInputVar('');
+      searchRef.current.value = '';
+    }
+    return;
+  }, [isOpenSearchInput]);
+
   return (
-    <SSearchInput visible={isOpenSearchInput ? 'flex' : 'none'}>
-      <input type="text" onChange={handleSearchInput} autoFocus></input>
-      <SButton onClick={() => isSearchedVar(true)}>검색</SButton>
+    <SSearchInput
+      visible={isOpenSearchInput && isClickedTheme ? 'flex' : 'none'}
+    >
+      <input
+        ref={searchRef}
+        type="text"
+        onChange={handleSearchInput}
+        autoFocus
+      ></input>
+      <SButton
+        onClick={() => {
+          isSearchedVar(true);
+          searchKeywordVar(searchInput);
+        }}
+      >
+        검색
+      </SButton>
     </SSearchInput>
   );
 }

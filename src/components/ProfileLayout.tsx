@@ -44,7 +44,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0 2rem 2rem;
+  padding: 2rem 2rem 2rem;
   > div {
     display: flex;
     flex-direction: column;

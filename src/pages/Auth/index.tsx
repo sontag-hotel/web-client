@@ -1,9 +1,10 @@
+import {FC} from 'react';
 import {login} from 'stores/auth';
 import {useLoginKakaoMutation} from 'generated/graphql';
 import {useEffect} from 'react';
 import {Navigate, useLocation, useSearchParams} from 'react-router-dom';
 
-const Auth = () => {
+const Auth: FC = () => {
   const location = useLocation();
   const [searchParams] = useSearchParams(location.search);
   const code = searchParams.get('code') || '';
@@ -36,4 +37,5 @@ const Auth = () => {
   }
   return null;
 };
+
 export default Auth;

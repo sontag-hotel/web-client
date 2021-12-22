@@ -1,20 +1,23 @@
-// import ProfileLayout from '../components/ProfileLayout';
-
 import {tokenVar} from 'stores/auth';
 import ProfileLayout from 'components/ProfileLayout';
 import ProfileWelcome from 'components/ProfileWelcome';
 import {useMeQuery} from 'generated/graphql';
 import {FC} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {Navigate, useNavigate} from 'react-router-dom';
 
 const Welcome: FC = () => {
+  const token = tokenVar();
   const navigate = useNavigate();
   const {data} = useMeQuery({
     context: {
-      headers: {Authorization: tokenVar()},
+      headers: {Authorization: token},
     },
+    skip: !token,
   });
 
+  if (!token) {
+    return <Navigate to="/" replace />;
+  }
   if (data) {
     return (
       <ProfileLayout

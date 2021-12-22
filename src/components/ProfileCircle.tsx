@@ -3,17 +3,44 @@ import styled, {css} from 'styled-components';
 import 'styled-components/macro';
 import {colors} from 'styles';
 const sizes = {
-  small: css`
+  small: css<ContainerProps>`
     width: 2.7rem;
     height: 2.7rem;
+    ${({lineColor}) =>
+      lineColor &&
+      css`
+        border: 2px solid ${lineColor};
+        border-radius: 50%;
+      `}
+    > div {
+      border: 2px solid ${colors.background};
+    }
   `,
-  medium: css`
+  medium: css<ContainerProps>`
     width: 2.7rem;
     height: 2.7rem;
+    ${({lineColor}) =>
+      lineColor &&
+      css`
+        border: 2px solid ${lineColor};
+        border-radius: 50%;
+      `}
+    > div {
+      border: 2px solid ${colors.background};
+    }
   `,
-  large: css`
+  large: css<ContainerProps>`
     width: 10.2rem;
     height: 10.2rem;
+    ${({lineColor}) =>
+      lineColor &&
+      css`
+        border: 4px solid ${lineColor};
+        border-radius: 50%;
+      `}
+    > div {
+      border: 4px solid ${colors.background};
+    }
   `,
 };
 
@@ -36,7 +63,6 @@ const ProfileCircle: FC<ProfileCircleProps> = ({size, url, lineColor}) => {
     </Container>
   );
 };
-
 export default ProfileCircle;
 type ContainerProps = {
   size: keyof typeof sizes;
@@ -45,24 +71,18 @@ type ContainerProps = {
 const Container = styled.span<ContainerProps>`
   display: inline-block;
   ${({size}) => sizes[size]}
-  ${({lineColor}) =>
-    lineColor &&
-    css`
-      border: 2px solid ${lineColor};
-      border-radius: 50%;
-    `}
-  div {
+  > div {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
-    border: 2px solid ${colors.background};
+    border-radius: 50%;
     overflow: hidden;
-    img {
+    > img {
       max-width: fit-content;
       height: 100%;
-      //width: ${props => sizes[props.size]};
-      border-radius: 50%;
+      /* width: ${props => sizes[props.size]}; */
+      /* border-radius: 50%; */
     }
   }
 `;

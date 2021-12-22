@@ -33,6 +33,3 @@ export const tokenVar = makeVar(localStorage.getItem('token'));
 export const meVar = makeVar<LoginKakaoMutation['loginKakao']['me']>(
   JSON.parse(localStorage.getItem('me') || JSON.stringify(''))
 );
-// export const login = makeVar((token: string) => {
-//   localStorage.setItem('token', token);
-// });

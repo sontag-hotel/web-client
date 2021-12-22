@@ -1,13 +1,26 @@
 import styled from 'styled-components';
-import {useReactiveVar} from '@apollo/client';
-import {isClickedThemeVar} from 'stores/cafe';
+// import {useReactiveVar} from '@apollo/client';
+// import {isClickedThemeVar} from 'stores/cafe';
 
-type Iprops = {
-  visible: string;
-};
+export default function InformCardBox({children}: {children: React.ReactNode}) {
+  // const isClickedTheme = useReactiveVar(isClickedThemeVar);
 
+  return (
+    <SInformCardBox
+    // visible={isClickedTheme ? 'flex' : 'none'}
+    >
+      {children}
+    </SInformCardBox>
+  );
+}
+
+// type Iprops = {
+//   visible: string;
+// };
+
+/* display: ${(props: Iprops) => props.visible}; */
 const SInformCardBox = styled.div`
-  display: ${(props: Iprops) => props.visible};
+  display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -18,13 +31,3 @@ const SInformCardBox = styled.div`
   bottom: 1%;
   overflow: auto;
 `;
-
-export default function InformCardBox({children}: {children: React.ReactNode}) {
-  const isClickedTheme = useReactiveVar(isClickedThemeVar);
-
-  return (
-    <SInformCardBox visible={isClickedTheme ? 'flex' : 'none'}>
-      {children}
-    </SInformCardBox>
-  );
-}

@@ -1,5 +1,5 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
-import {useEffect} from 'react';
+import {FC, useEffect} from 'react';
 // import styled from 'styled-components';
 import 'styled-components/macro';
 import markerImg from 'assets/images/marker.png';
@@ -92,7 +92,7 @@ const placesSearchCB = (data: any[], status: any, pagination: any) => {
     alert('올바른 카페 이름을 입력해주세요.');
   }
 };
-function Map(): React.ReactElement {
+const Map: FC = () => {
   const cafeList = useReactiveVar(cafeListVar);
   const map = useReactiveVar(kakaoMapVar);
   const isSearched = useReactiveVar(isSearchedVar);
@@ -130,6 +130,6 @@ function Map(): React.ReactElement {
 
     // </SMap>
   );
-}
+};
 
 export default Map;

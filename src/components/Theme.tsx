@@ -1,5 +1,6 @@
 import {Theme as ThemeType} from 'generated/graphql';
-import {clickedThemeVar, isClickedThemeVar} from 'stores/cafe';
+import {Link} from 'react-router-dom';
+// import {clickedThemeVar, isClickedThemeVar} from 'stores/cafe';
 import styled from 'styled-components';
 import 'styled-components/macro';
 
@@ -8,7 +9,7 @@ type ITheme = {
   text: keyof typeof themeType;
 };
 
-const STheme = styled.button`
+const STheme = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,6 +27,8 @@ const STheme = styled.button`
   &:focus {
     outline: 0;
   }
+  text-decoration: none;
+  color: initial;
 `;
 
 // const changeThemeType = (text: string): ThemeType => {
@@ -44,12 +47,15 @@ export const themeType = {
 };
 
 export default function Theme({Icon, text}: ITheme) {
-  const handleClickTheme = (text: keyof typeof themeType) => {
-    isClickedThemeVar(true);
-    clickedThemeVar(themeType[text]);
-  };
+  // const handleClickTheme = (text: keyof typeof themeType) => {
+  //   isClickedThemeVar(true);
+  //   clickedThemeVar(themeType[text]);
+  // };
   return (
-    <STheme onClick={() => handleClickTheme(text)}>
+    <STheme
+      to={themeType[text].toLowerCase()}
+      // onClick={() => handleClickTheme(text)}
+    >
       <span>{Icon}</span>
       <span>{text}</span>
     </STheme>

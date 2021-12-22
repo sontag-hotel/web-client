@@ -1,11 +1,11 @@
 import {meVar, tokenVar, update} from 'stores/auth';
-import Profile from 'components/ProfileInput';
+import ProfileInput from 'components/ProfileInput';
 import ProfileLayout from 'components/ProfileLayout';
 import {useUpdateProfileMutation} from 'generated/graphql';
-import {ChangeEventHandler, useEffect, useState} from 'react';
+import {ChangeEventHandler, FC, useEffect, useState} from 'react';
 import {Navigate, useNavigate} from 'react-router-dom';
 
-const EditProfile = () => {
+const Profile: FC = () => {
   const token = tokenVar();
   const me = meVar();
   const navigate = useNavigate();
@@ -55,8 +55,9 @@ const EditProfile = () => {
       }}
       onSubmitClick={handleSubmit}
     >
-      <Profile name={name} desc={desc} onChange={handleChange} />
+      <ProfileInput name={name} desc={desc} onChange={handleChange} />
     </ProfileLayout>
   );
 };
-export default EditProfile;
+
+export default Profile;

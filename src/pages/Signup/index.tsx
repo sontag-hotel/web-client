@@ -1,5 +1,5 @@
 import {login} from 'stores/auth';
-import Profile from 'components/ProfileInput';
+import ProfileInput from 'components/ProfileInput';
 import ProfileLayout from 'components/ProfileLayout';
 import {useSignupMutation} from 'generated/graphql';
 import {ChangeEventHandler, FC, useEffect, useState} from 'react';
@@ -36,7 +36,7 @@ const Signup: FC = () => {
     }
   }, [data]);
 
-  if (!location.state) return <Navigate to={'/'} />;
+  if (!location.state) return <Navigate to={'/'} replace />;
 
   if (data)
     return (
@@ -51,7 +51,7 @@ const Signup: FC = () => {
       }}
       onSubmitClick={handleSubmit}
     >
-      <Profile name={name} desc={desc} onChange={handleChange} />
+      <ProfileInput name={name} desc={desc} onChange={handleChange} />
     </ProfileLayout>
   );
 };

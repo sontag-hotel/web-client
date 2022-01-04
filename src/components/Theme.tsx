@@ -1,32 +1,22 @@
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import 'styled-components/macro';
 
-type ITheme = {
-  Icon: string;
+type TTheme = {
+  id: number;
   text: string;
+  icon: string;
 };
-
-const STheme = styled.button`
+const StyledTheme = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.3rem;
-  font-weight: 600;
-  background-color: transparent;
-  border: none;
 `;
-
-const ThemeImg = styled.img`
-  height: 4rem;
-  margin-bottom: 5px;
-`;
-
-export default function Theme({Icon, text}: ITheme) {
+export default function Theme({id, text, icon}: TTheme) {
   return (
-    <STheme>
-      <ThemeImg src={Icon} />
-      <span>{text}</span>
-    </STheme>
+    <Link to={`/theme${id}`}>
+      <StyledTheme>
+        <div>{icon}</div>
+        <div>{text}</div>
+      </StyledTheme>
+    </Link>
   );
 }

@@ -1,42 +1,40 @@
 import styled from 'styled-components';
-import 'styled-components/macro';
-
-import {colors} from '../styles';
 import Theme from './Theme';
-import Theme_1 from 'assets/images/hot-beverage.png';
-import Theme_2 from 'assets/images/camera.png';
-import Theme_3 from 'assets/images/laptop.png';
 
-const SThemeBox = styled.div`
+const StyledThemeBox = styled.div`
   display: flex;
-  background-color: ${colors.backgroundGray};
-  height: 7rem;
   width: 100%;
-  z-index: 2;
+  height: 103px;
+  background: #f8f8f8;
 `;
 
-function ThemeBox() {
-  const themes = [
-    {
-      icon: Theme_1,
-      text: '커피 맛집',
-    },
-    {
-      icon: Theme_2,
-      text: '분위기 감성',
-    },
-    {
-      icon: Theme_3,
-      text: '노트북 작업',
-    },
-  ];
+export const themes = [
+  {
+    id: 1,
+    title: '커피 맛집',
+    text: 'TASTE',
+    icon: '☕️',
+  },
+  {
+    id: 2,
+    title: '분위기 감성',
+    text: 'MOOD',
+    icon: '📸️',
+  },
+  {
+    id: 3,
+    title: '노트북 작업',
+    text: 'WORK',
+    icon: '💻️',
+  },
+];
+
+export default function ThemeBox() {
   return (
-    <SThemeBox>
-      {themes.map(theme => (
-        <Theme key={theme.text} Icon={theme.icon} text={theme.text} />
+    <StyledThemeBox>
+      {themes.map(t => (
+        <Theme key={t.icon} id={t.id} text={t.title} icon={t.icon} />
       ))}
-    </SThemeBox>
+    </StyledThemeBox>
   );
 }
-
-export default ThemeBox;
